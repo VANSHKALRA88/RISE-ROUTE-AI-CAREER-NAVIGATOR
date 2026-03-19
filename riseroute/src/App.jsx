@@ -459,6 +459,17 @@ Use emojis and make it engaging. Keep it under 500 words.`,
   };
 
   const role = selectedRole;
+  
+  {/* LOGO'S LINK */}
+const ORG_LOGOS = {
+  "Google Cloud": "https://logo.clearbit.com/cloud.google.com",
+  "Amazon Web Services": "https://logo.clearbit.com/aws.amazon.com",
+  "Microsoft": "https://logo.clearbit.com/microsoft.com",
+  "HashiCorp": "https://logo.clearbit.com/hashicorp.com",
+  "Linux Foundation": "https://logo.clearbit.com/linuxfoundation.org",
+  "CNCF": "https://logo.clearbit.com/cncf.io",
+  };
+
 
   return (
     <div style={{
@@ -958,7 +969,35 @@ Use emojis and make it engaging. Keep it under 500 words.`,
                           background: "rgba(15,20,35,0.8)", border: "1px solid rgba(255,255,255,0.07)",
                           borderRadius: "16px", padding: "24px",
                         }}>
-                          <div style={{ fontSize: "32px", marginBottom: "12px" }}>{cert.badge}</div>
+                          <div style={{ marginBottom: "12px", height: "36px", display: "flex", alignItems: "center" }}>
+                         {ORG_LOGOS[cert.org] ? (
+                        <img
+                            src={ORG_LOGOS[cert.org]}
+                            alt={cert.org}
+                            style={{
+                                height: "32px",
+                                width: "32px",
+                                objectFit: "contain",
+                                borderRadius: "6px",
+                                background: "#fff",
+                                padding: "4px",
+                            }}
+                          onError={(e) => {
+                             e.target.style.display = "none";
+                            e.target.nextSibling.style.display = "block";
+                            }}
+                             />
+                          ) : null}
+                                  {/* Fallback emoji shown if logo fails to load */}
+                                  <span
+                                  style={{
+                                  fontSize: "28px",
+                                  display: ORG_LOGOS[cert.org] ? "none" : "block",
+                                  }}
+                                  >
+                                {cert.badge}
+                            </span>
+</                        div>
                           <h4 style={{ fontSize: "15px", fontWeight: "700", marginBottom: "8px", color: "#f0f2f8", lineHeight: "1.4" }}>{cert.name}</h4>
                           <p style={{ fontSize: "12px", color: "#6b7899", marginBottom: "12px" }}>🏢 {cert.org}</p>
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
