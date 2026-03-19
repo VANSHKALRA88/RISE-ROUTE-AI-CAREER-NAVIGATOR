@@ -997,7 +997,7 @@ const ORG_LOGOS = {
                                   >
                                 {cert.badge}
                             </span>
-</                        div>
+                          </div>
                           <h4 style={{ fontSize: "15px", fontWeight: "700", marginBottom: "8px", color: "#f0f2f8", lineHeight: "1.4" }}>{cert.name}</h4>
                           <p style={{ fontSize: "12px", color: "#6b7899", marginBottom: "12px" }}>🏢 {cert.org}</p>
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
