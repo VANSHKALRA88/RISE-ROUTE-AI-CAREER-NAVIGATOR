@@ -460,7 +460,7 @@ Use emojis and make it engaging. Keep it under 500 words.`,
 
   const role = selectedRole;
   
-  {/* LOGO'S LINK */}
+  //logo link
 const ORG_LOGOS = {
   "Google Cloud": "https://logo.clearbit.com/cloud.google.com",
   "Amazon Web Services": "https://logo.clearbit.com/aws.amazon.com",
