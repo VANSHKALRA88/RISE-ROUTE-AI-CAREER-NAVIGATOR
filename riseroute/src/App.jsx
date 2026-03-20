@@ -157,14 +157,14 @@ const ROLES = [
     certifications: [
       {
         name: "Meta Front-End Developer Certificate",
-        org: "Meta / Coursera",
+        org: "Meta",
         url: "https://www.coursera.org/professional-certificates/meta-front-end-developer",
         level: "Professional",
         badge: "📘",
       },
       {
         name: "IBM Full Stack Software Developer",
-        org: "IBM / Coursera",
+        org: "IBM",
         url: "https://www.coursera.org/professional-certificates/ibm-full-stack-cloud-developer",
         level: "Professional",
         badge: "🔵",
