@@ -469,6 +469,7 @@ const ORG_LOGOS = {
   "HashiCorp":            "https://www.google.com/s2/favicons?domain=hashicorp.com&sz=64",
   "Linux Foundation":     "https://www.google.com/s2/favicons?domain=linuxfoundation.org&sz=64",
   "CNCF":                 "https://www.google.com/s2/favicons?domain=cncf.io&sz=64",
+  "Oracle":               "https://www.google.com/s2/favicons?domain=oracle.com&sz=64",
 };
 
   return (
