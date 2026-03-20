@@ -173,7 +173,7 @@ const ROLES = [
         name: "freeCodeCamp Full Stack Certification",
         org: "freeCodeCamp",
         url: "https://www.freecodecamp.org/learn/",
-        level: "Free Cert",
+        level: "Free Certificate",
         badge: "🎓",
       },
     ],
