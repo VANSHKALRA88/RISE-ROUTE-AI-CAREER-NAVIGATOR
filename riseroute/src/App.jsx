@@ -163,7 +163,7 @@ const ROLES = [
         badge: "📘",
       },
       {
-        name: "MongoDB Node.js Developer Path",
+        name: "MongoDB Node.js Developer Path Certificate",
         org: "MongoDB",
         url: "https://learn.mongodb.com/catalog",
         level: "Professional",
