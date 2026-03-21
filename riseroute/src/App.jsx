@@ -217,9 +217,9 @@ const ROLES = [
     ],
     certifications: [
       {
-        name: "Palo Alto Certified Cybersecurity Entry-level Technician (PCCET)",
-        org: "Palo Alto Networks",
-        url: "https://www.paloaltonetworks.com/services/education/pccet",
+        name: "Cisco Certified CyberOps Associate",
+        org: "Cisco",
+        url: "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/cyberops-associate.html",
         level: "Professional",
         badge: "🔷",
       },
@@ -476,7 +476,7 @@ const ORG_LOGOS = {
   "Hack The Box":         "https://www.google.com/s2/favicons?domain=hackthebox.com&sz=64",
   "Try Hack Me":          "https://www.google.com/s2/favicons?domain=tryhackme.com&sz=64",
   "Splunk":               "https://www.google.com/s2/favicons?domain=splunk.com&sz=64",
-  "Palo Alto Networks":   "https://www.google.com/s2/favicons?domain=paloaltonetworks.com&sz=64",
+  "Cisco":                "https://www.google.com/s2/favicons?domain=cisco.com&sz=64",
 };
 
   return (
