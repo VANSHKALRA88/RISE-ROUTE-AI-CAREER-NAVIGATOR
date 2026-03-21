@@ -278,11 +278,11 @@ const ROLES = [
     ],
     certifications: [
       {
-        name: "Certified Ethical Hacker (CEH)",
-        org: "EC-Council",
-        url: "https://www.eccouncil.org/programs/certified-ethical-hacker-ceh/",
+        name: "Certified Penetration Testing Specialist (CPTS)",
+        org: "Hack The Box",
+        url: "https://academy.hackthebox.com/preview/certifications/htb-certified-penetration-testing-specialist",
         level: "Professional",
-        badge: "🎯",
+        badge: "💀",
       },
       {
         name: "CompTIA Security+",
@@ -473,6 +473,7 @@ const ORG_LOGOS = {
   "Meta":                 "https://www.google.com/s2/favicons?domain=meta.com&sz=64",
   "freeCodeCamp":         "https://www.google.com/s2/favicons?domain=freecodecamp.com&sz=64",
   "MongoDB":              "https://www.google.com/s2/favicons?domain=mongodb.com&sz=64",
+  "Hack The Box":         "https://www.google.com/s2/favicons?domain=hackthebox.com&sz=64",
 };
 
   return (
