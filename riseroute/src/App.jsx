@@ -292,11 +292,11 @@ const ROLES = [
         badge: "🟢",
       },
       {
-        name: "Certified Information Systems Security Professional (CISSP)",
-        org: "ISC²",
-        url: "https://www.isc2.org/certifications/cissp",
-        level: "Expert",
-        badge: "🏆",
+        name: "Splunk Enterprise Certified Admin 2026",
+        org: "Splunk",
+        url: "https://www.splunk.com/en_us/training/certification-track/splunk-enterprise-certified-admin.html",
+        level: "Intermediate",
+        badge: "🟠",
       },
     ],
     jobs: [
@@ -475,6 +475,7 @@ const ORG_LOGOS = {
   "MongoDB":              "https://www.google.com/s2/favicons?domain=mongodb.com&sz=64",
   "Hack The Box":         "https://www.google.com/s2/favicons?domain=hackthebox.com&sz=64",
   "Try Hack Me":          "https://www.google.com/s2/favicons?domain=tryhackme.com&sz=64",
+  "Splunk":               "https://www.google.com/s2/favicons?domain=splunk.com&sz=64",
 };
 
   return (
