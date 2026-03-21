@@ -217,14 +217,14 @@ const ROLES = [
     ],
     certifications: [
       {
-        name: "IBM Data Science Professional Certificate",
-        org: "IBM / Coursera",
-        url: "https://www.coursera.org/professional-certificates/ibm-data-science",
+        name: "Palo Alto Certified Cybersecurity Entry-level Technician (PCCET)",
+        org: "Palo Alto Networks",
+        url: "https://www.paloaltonetworks.com/services/education/pccet",
         level: "Professional",
         badge: "🔷",
       },
       {
-        name: "Google Data Analytics Certificate",
+        name: "Google Data Analytics Certificate 2026",
         org: "Google / Coursera",
         url: "https://www.coursera.org/professional-certificates/google-data-analytics",
         level: "Professional",
@@ -476,6 +476,7 @@ const ORG_LOGOS = {
   "Hack The Box":         "https://www.google.com/s2/favicons?domain=hackthebox.com&sz=64",
   "Try Hack Me":          "https://www.google.com/s2/favicons?domain=tryhackme.com&sz=64",
   "Splunk":               "https://www.google.com/s2/favicons?domain=splunk.com&sz=64",
+  "Palo Alto Networks":   "https://www.google.com/s2/favicons?domain=paloaltonetworks.com&sz=64",
 };
 
   return (
