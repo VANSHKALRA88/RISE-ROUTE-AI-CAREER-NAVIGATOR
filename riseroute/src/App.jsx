@@ -285,11 +285,11 @@ const ROLES = [
         badge: "💀",
       },
       {
-        name: "CompTIA Security+",
-        org: "CompTIA",
-        url: "https://www.comptia.org/certifications/security",
-        level: "Entry-Level",
-        badge: "🔒",
+        name: "Pre-Security",
+        org: "TryHackMe",
+        url: "https://tryhackme.com/certification/pre-security",
+        level: "Beginner",
+        badge: "🟢",
       },
       {
         name: "Certified Information Systems Security Professional (CISSP)",
@@ -474,6 +474,7 @@ const ORG_LOGOS = {
   "freeCodeCamp":         "https://www.google.com/s2/favicons?domain=freecodecamp.com&sz=64",
   "MongoDB":              "https://www.google.com/s2/favicons?domain=mongodb.com&sz=64",
   "Hack The Box":         "https://www.google.com/s2/favicons?domain=hackthebox.com&sz=64",
+  "Try Hack Me":          "https://www.google.com/s2/favicons?domain=tryhackme.com&sz=64",
 };
 
   return (
