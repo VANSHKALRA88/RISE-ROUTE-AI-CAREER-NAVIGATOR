@@ -56,10 +56,10 @@ const ROLES = [
       },
     ],
     jobs: [
-      { title: "Software Engineer @ Google", url: "https://careers.google.com/jobs/results/?q=software+engineer", salary: "₹18–45 LPA" },
-      { title: "SDE @ Amazon", url: "https://www.amazon.jobs/en/job_categories/software-development", salary: "₹20–50 LPA" },
-      { title: "SWE @ LinkedIn", url: "https://careers.linkedin.com/", salary: "₹15–40 LPA" },
-      { title: "Engineer @ TCS/Infosys", url: "https://www.tcs.com/careers", salary: "₹3.5–8 LPA" },
+      { title: "Software Engineer @ Google", url: "https://careers.google.com/jobs/results/?q=software+engineer", salary: "₹18~45 LPA" },
+      { title: "SDE @ Amazon", url: "https://www.amazon.jobs/en/job_categories/software-development", salary: "₹20~50 LPA" },
+      { title: "SWE @ LinkedIn", url: "https://careers.linkedin.com/", salary: "₹15~40 LPA" },
+      { title: "Engineer @ TCS/Infosys", url: "https://www.tcs.com/careers", salary: "₹3.5~8 LPA" },
     ],
   },
   {
@@ -117,8 +117,8 @@ const ROLES = [
       },
     ],
     jobs: [
-      { title: "ML Engineer @ OpenAI", url: "https://openai.com/careers", salary: "$150K–250K" },
-      { title: "AI Researcher @ Google DeepMind", url: "https://careers.google.com/jobs/results/?q=machine+learning", salary: "₹30–80 LPA" },
+      { title: "ML Engineer @ OpenAI", url: "https://openai.com/careers", salary: "$150K~250K" },
+      { title: "AI Researcher @ Google DeepMind", url: "https://careers.google.com/jobs/results/?q=machine+learning", salary: "₹30~80 LPA" },
       { title: "Data Scientist @ Flipkart", url: "https://www.flipkartcareers.com/", salary: "₹15~40 LPA" },
       { title: "ML Engineer @ Fractal Analytics", url: "https://fractal.ai/careers/", salary: "₹12~30 LPA" },
     ],
