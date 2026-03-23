@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { useState, useEffect, useRef } from "react";
 
 const ROLES = [
@@ -454,6 +455,15 @@ Use emojis and make it engaging. Keep it under 500 words.`,
   const handleBack = () => {
     setSelectedRole(null);
     setAiContent({ roadmap: "", market: "" });
+    const handleRoleSelect = (role) => {
+  setSelectedRole(role);
+  fetchAIContent(role);
+};
+
+const handleBack = () => {
+  setSelectedRole(null);
+  setAiContent({ roadmap: "", market: "" });
+};
   };
 
   const role = selectedRole;
