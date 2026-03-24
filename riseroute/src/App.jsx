@@ -333,7 +333,7 @@ const ROLES = [
         title: "DevOps Roadmap 2024 – Zero to Hero",
         channel: "KodeKloud",
         url: "https://www.youtube.com/watch?v=j5Zsa_eOXeY",
-        views: "4M+ views",
+        views: "5M+ views",
         thumb: "https://i.ytimg.com/vi/j5Zsa_eOXeY/hqdefault.jpg",
       },
     ],
