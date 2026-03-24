@@ -1151,7 +1151,7 @@ const ORG_LOGOS = {
           borderTop: "1px solid rgba(255,255,255,0.06)",
           color: "#3a4560", fontSize: "13px",
         }}>
-          <p>🚀 <strong style={{ color: "#6b7899" }}>RiseRoute</strong> — AI-Powered Career Navigation for Tomorrow's Tech Leaders</p>
+          <p>🔥 <strong style={{ color: "#6b7899" }}>RiseRoute</strong> — AI-Powered Career Navigation for Tomorrow's Tech Leaders</p>
           <p style={{ marginTop: "8px" }}>Built by RiseRoute Team</p>
         </footer>
       </div>
