@@ -326,7 +326,7 @@ const ROLES = [
         title: "Docker & Kubernetes Complete Course",
         channel: "TechWorld with Nana",
         url: "https://www.youtube.com/watch?v=3c-iBn73dDE",
-        views: "6M+ views",
+        views: "7M+ views",
         thumb: "https://i.ytimg.com/vi/3c-iBn73dDE/hqdefault.jpg",
       },
       {
