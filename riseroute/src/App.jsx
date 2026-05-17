@@ -397,26 +397,26 @@ export default function RiseRoute() {
     setLoading(true);
     setAiContent({ roadmap: "", market: "" });
     try {
-      const [roadmapRes, marketRes] = await Promise.all([
-        fetch("/api/gemini", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-  prompt: `Create a detailed, structured learning roadmap for becoming a ${role.title}. 
-Format it as clear phases (Phase 1, Phase 2, etc.) with specific skills, tools, and milestones for each phase. 
-Make it actionable, realistic, and include estimated timeframes. Use emojis for visual appeal. Keep it under 600 words.`
-}),
-        }),
-        fetch("/api/gemini", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-  prompt: `Analyze the current market scope and industry demand for ${role.title} in 2025-2026. 
-Cover: salary trends (India + Global), top hiring companies, in-demand skills, future outlook, remote work opportunities, and career growth paths. 
-Use emojis and make it engaging. Keep it under 500 words.`
-}),
-        }),
-      ]);
+      const roadmapRes = await fetch("/api/gemini", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    prompt: `Create a detailed, structured learning roadmap for becoming a ${role.title}. 
+Format it as clear phases with skills, tools, projects, and timelines.`,
+  }),
+});
+        
+      const marketRes = await fetch("/api/gemini", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    prompt: `Analyze the market demand, salary trends, hiring companies, and future scope for ${role.title} in 2025.`,
+  }),
+});
 
       const roadmapData = await roadmapRes.json();
       const marketData = await marketRes.json();
