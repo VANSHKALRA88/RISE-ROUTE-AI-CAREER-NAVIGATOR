@@ -393,47 +393,58 @@ export default function RiseRoute() {
     setTimeout(() => setAnimIn(true), 100);
   }, []);
 
-  const fetchAIContent = async (role) => {
-    setLoading(true);
-    setAiContent({ roadmap: "", market: "" });
-    try {
-      const roadmapRes = await fetch("/api/gemini", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    prompt: `Create a detailed, structured learning roadmap for becoming a ${role.title}. 
+ const fetchAIContent = async (role) => {
+  setLoading(true);
+  setAiContent({ roadmap: "", market: "" });
+
+  try {
+    const roadmapRes = await fetch("/api/gemini", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt: `Create a detailed, structured learning roadmap for becoming a ${role.title}. 
 Format it as clear phases with skills, tools, projects, and timelines.`,
-  }),
-});
-        
-      const marketRes = await fetch("/api/gemini", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    prompt: `Analyze the market demand, salary trends, hiring companies, and future scope for ${role.title} in 2025.`,
-  }),
-});
+      }),
+    });
 
-      const roadmapData = await roadmapRes.json();
-      const marketData = await marketRes.json();
+    const marketRes = await fetch("/api/gemini", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt: `Analyze the market demand, salary trends, hiring companies, and future scope for ${role.title} in 2025.`,
+      }),
+    });
 
-      setAiContent({
-        roadmap: roadmapData.candidates?.[0]?.content?.parts?.[0]?.text || "Unable to generate roadmap. Please try again.",
+    const roadmapData = await roadmapRes.json();
+    const marketData = await marketRes.json();
 
-market: marketData.candidates?.[0]?.content?.parts?.[0]?.text || "Unable to generate market analysis. Please try again.",
-      });
-    } catch (e) {
-      setAiContent({
-        roadmap: "⚠️ Could not load AI roadmap. Please check your connection.",
-        market: "⚠️ Could not load market analysis. Please check your connection.",
-      });
-    }
-    setLoading(false);
-  };
+    console.log("ROADMAP DATA:", roadmapData);
+    console.log("MARKET DATA:", marketData);
+
+    setAiContent({
+      roadmap:
+        roadmapData?.candidates?.[0]?.content?.parts?.[0]?.text ||
+        "Unable to generate roadmap. Please try again.",
+
+      market:
+        marketData?.candidates?.[0]?.content?.parts?.[0]?.text ||
+        "Unable to generate market analysis. Please try again.",
+    });
+  } catch (e) {
+    console.error(e);
+
+    setAiContent({
+      roadmap: "⚠️ Could not load AI roadmap. Please check your connection.",
+      market: "⚠️ Could not load market analysis. Please check your connection.",
+    });
+  }
+
+  setLoading(false);
+};
 
   const handleRoleSelect = (role) => {
     setSelectedRole(role);
