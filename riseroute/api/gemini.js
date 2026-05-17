@@ -10,6 +10,7 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           contents: [
             {
+              role: "user",
               parts: [
                 {
                   text: req.body.prompt,
@@ -23,14 +24,20 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
+    console.log(data);
+
     if (!response.ok) {
-      return res.status(500).json(data);
+      return res.status(500).json({
+        error: data.error || "Gemini API failed",
+      });
     }
 
-    res.status(200).json(data);
+    return res.status(200).json(data);
 
   } catch (error) {
-    res.status(500).json({
+    console.error(error);
+
+    return res.status(500).json({
       error: error.message,
     });
   }
