@@ -427,12 +427,14 @@ Format it as clear phases with skills, tools, projects, and timelines.`,
 
     setAiContent({
       roadmap:
-        roadmapData?.candidates?.[0]?.content?.parts?.[0]?.text ||
-        "Unable to generate roadmap. Please try again.",
+  roadmapData.candidates?.[0]?.content?.parts?.[0]?.text ||
+  roadmapData.error?.message ||
+  JSON.stringify(roadmapData),
 
-      market:
-        marketData?.candidates?.[0]?.content?.parts?.[0]?.text ||
-        "Unable to generate market analysis. Please try again.",
+market:
+  marketData.candidates?.[0]?.content?.parts?.[0]?.text ||
+  marketData.error?.message ||
+  JSON.stringify(marketData),
     });
   } catch (e) {
     console.error(e);
