@@ -1,13 +1,8 @@
-const express = require("express");
-const cors = require("cors");
-require("dotenv").config();
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
 
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-
-app.post("/api/claude", async (req, res) => {
   try {
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -25,13 +20,13 @@ app.post("/api/claude", async (req, res) => {
 
     const data = await response.json();
 
-    res.json(data);
+    res.status(200).json(data);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Something went wrong" });
-  }
-});
 
-app.listen(3001, () => {
-  console.log("🚀 Server running on http://localhost:3001");
-});
+    res.status(500).json({
+      error: "Claude API failed",
+      details: error.message,
+    });
+  }
+}

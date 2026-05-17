@@ -398,7 +398,7 @@ export default function RiseRoute() {
     setAiContent({ roadmap: "", market: "" });
     try {
       const [roadmapRes, marketRes] = await Promise.all([
-        fetch("http://localhost:3001/api/claude", {
+        fetch("/api/claude", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -411,7 +411,7 @@ Make it actionable, realistic, and include estimated timeframes. Use emojis for 
             }],
           }),
         }),
-        fetch("http://localhost:3001/api/claude", {
+        fetch("/api/claude", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
