@@ -6,10 +6,12 @@ export default async function handler(req, res) {
         method: "POST",
         headers: {
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          "HTTP-Referer": "https://rise-route-ai-career-navigator.vercel.app",
+          "X-Title": "RiseRoute",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "openchat/openchat-7b:free",
+          model: "nousresearch/hermes-3-llama-3.1-8b:free",
           messages: [
             {
               role: "user",
@@ -22,8 +24,6 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    console.log(data);
-
     if (!response.ok) {
       return res.status(response.status).json({
         error: data.error?.message || "OpenRouter failed",
@@ -35,8 +35,6 @@ export default async function handler(req, res) {
     });
 
   } catch (error) {
-    console.error(error);
-
     return res.status(500).json({
       error: error.message,
     });
