@@ -11,7 +11,7 @@ export default async function handler(req, res) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "microsoft/phi-3-mini-128k-instruct:free",
+          model: "arcee-ai/trinity-large-thinking:free",
           messages: [
             {
               role: "user",
