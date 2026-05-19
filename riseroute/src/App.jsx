@@ -398,7 +398,7 @@ export default function RiseRoute() {
   setAiContent({ roadmap: "", market: "" });
 
   try {
-    const roadmapRes = await fetch("/api/gemini", {
+    const roadmapRes = await fetch("/api/openai", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -409,7 +409,7 @@ Format it as clear phases with skills, tools, projects, and timelines.`,
       }),
     });
 
-    const marketRes = await fetch("/api/gemini", {
+    const marketRes = await fetch("/api/openai", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -427,14 +427,14 @@ Format it as clear phases with skills, tools, projects, and timelines.`,
 
     setAiContent({
       roadmap:
-  roadmapData.candidates?.[0]?.content?.parts?.[0]?.text ||
-  roadmapData.error?.message ||
-  JSON.stringify(roadmapData),
+  roadmapData.text ||
+  roadmapData.error ||
+  "No roadmap generated",
 
 market:
-  marketData.candidates?.[0]?.content?.parts?.[0]?.text ||
-  marketData.error?.message ||
-  JSON.stringify(marketData),
+  marketData.text ||
+  marketData.error ||
+  "No market analysis generated",
     });
   } catch (e) {
     console.error(e);
