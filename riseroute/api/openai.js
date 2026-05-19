@@ -9,7 +9,7 @@ export default async function handler(req, res) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "google/gemma-2-9b-it:free",
+          model: "openchat/openchat-7b:free",
           messages: [
             {
               role: "user",
