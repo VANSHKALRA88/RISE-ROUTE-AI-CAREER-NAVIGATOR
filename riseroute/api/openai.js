@@ -11,7 +11,7 @@ export default async function handler(req, res) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "nousresearch/hermes-3-llama-3.1-8b:free",
+          model: "microsoft/phi-3-mini-128k-instruct:free",
           messages: [
             {
               role: "user",
