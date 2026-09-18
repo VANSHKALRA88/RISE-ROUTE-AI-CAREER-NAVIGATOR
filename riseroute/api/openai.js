@@ -1,4 +1,11 @@
+
 export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({
+      error: "Method not allowed",
+    });
+  }
+
   try {
     const response = await fetch(
       "https://openrouter.ai/api/v1/chat/completions",
@@ -6,12 +13,13 @@ export default async function handler(req, res) {
         method: "POST",
         headers: {
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "HTTP-Referer": "https://rise-route-ai-career-navigator.vercel.app",
+          "HTTP-Referer":
+            "https://rise-route-ai-career-navigator.vercel.app",
           "X-Title": "RiseRoute",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "arcee-ai/trinity-large-thinking:free",
+          model: "openrouter/free",
           messages: [
             {
               role: "user",
@@ -31,9 +39,8 @@ export default async function handler(req, res) {
     }
 
     return res.status(200).json({
-      text: data.choices?.[0]?.message?.content,
+      text: data.choices?.[0]?.message?.content || "",
     });
-
   } catch (error) {
     return res.status(500).json({
       error: error.message,
