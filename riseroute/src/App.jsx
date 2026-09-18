@@ -379,6 +379,7 @@ export default function RiseRoute() {
   const [particles, setParticles] = useState([]);
   const [animIn, setAnimIn] = useState(false);
   const resultRef = useRef(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const p = Array.from({ length: 30 }, (_, i) => ({
@@ -485,6 +486,9 @@ market:
   };
 
   const role = selectedRole;
+  const searchResults = ROLES.filter((r) =>
+  r.title.toLowerCase().includes(searchTerm.trim().toLowerCase())
+);
   
   //logo links
 const ORG_LOGOS = {
@@ -701,15 +705,70 @@ const ORG_LOGOS = {
               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
             }}>RiseRoute</span>
           </div>
-          <div style={{ display: "flex", gap: "8px" }}>
-            {["Explore", "Roadmaps", "Careers"].map(item => (
-              <button key={item} style={{
-                background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
-                color: "#a8b0c8", padding: "8px 16px", borderRadius: "8px",
-                fontSize: "13px", fontWeight: "600", cursor: "pointer", fontFamily: "inherit",
-              }}>{item}</button>
-            ))}
+          <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+  <div style={{ position: "relative" }}>
+    <input
+      type="text"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      placeholder="Search careers..."
+      style={{
+        width: "190px",
+        padding: "10px 12px",
+        borderRadius: "10px",
+        border: "1px solid rgba(255,255,255,0.2)",
+        background: "rgba(255,255,255,0.06)",
+        color: "#fff",
+        outline: "none",
+        fontSize: "13px",
+      }}
+    />
+
+    {searchTerm.trim() && (
+      <div style={{
+        position: "absolute",
+        top: "45px",
+        right: 0,
+        width: "280px",
+        background: "#101827",
+        border: "1px solid rgba(255,255,255,0.15)",
+        borderRadius: "12px",
+        padding: "8px",
+        zIndex: 1000,
+      }}>
+        {searchResults.length > 0 ? (
+          searchResults.map((r) => (
+            <button
+              key={r.id}
+              onMouseDown={() => {
+                handleRoleSelect(r);
+                setSearchTerm("");
+              }}
+              style={{
+                display: "block",
+                width: "100%",
+                padding: "10px",
+                border: "none",
+                borderRadius: "8px",
+                background: "transparent",
+                color: "#fff",
+                textAlign: "left",
+                cursor: "pointer",
+                fontSize: "13px",
+              }}
+            >
+              {r.icon} {r.title}
+            </button>
+          ))
+        ) : (
+          <div style={{ padding: "10px", color: "#aaa" }}>
+            No career track found
           </div>
+        )}
+      </div>
+    )}
+  </div>
+</div>
         </nav>
 
         {/* HERO */}
