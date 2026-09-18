@@ -410,14 +410,36 @@ Format it as clear phases with skills, tools, projects, and timelines.`,
     });
 
     const marketRes = await fetch("/api/openai", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt: `Analyze the market demand, salary trends, hiring companies, and future scope for ${role.title} in 2025.`,
-      }),
-    });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    prompt: `
+You are an expert career market analyst.
+
+Provide a detailed and practical market scope analysis
+for the career role: ${role.title}.
+
+Cover the following topics:
+
+1. Current market demand (2025-2026)
+2. Salary ranges in India
+3. Top hiring companies
+4. Required technical skills
+5. Future career growth
+6. Entry-level opportunities
+7. Remote and international opportunities
+8. A practical 6-month preparation strategy
+
+Write a professional, student-friendly report
+with clear headings, bullet points, and realistic information.
+
+Do not discuss content safety or moderation.
+Focus only on career market analysis.
+    `,
+  }),
+});
 
     const roadmapData = await roadmapRes.json();
     const marketData = await marketRes.json();
