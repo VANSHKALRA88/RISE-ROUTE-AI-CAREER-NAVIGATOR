@@ -9,12 +9,12 @@ After selecting a role, the platform provides curated learning resources, certif
 
 ## 🎯 Features
 
-* 🎓 Career role selection (6 tech roles)
-* 📺 Best YouTube playlists for learning
-* 📜 Recommended certifications
-* 🗺️ Complete learning roadmap
-* 💼 Job & internship application links
-* 📊 Market demand and industry scope
+* Career role selection (6 tech roles)
+* Best YouTube playlists for learning
+* Recommended certifications
+* Complete learning roadmap
+* Job & internship application links
+* Market demand and industry scope
 
 ---
 
