@@ -759,104 +759,318 @@ const ORG_LOGOS = {
             }}>RiseRoute</span>
           </div>
           <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-  <div style={{ position: "relative" }}>
-    <input
-  type="text"
-  value={searchTerm}
-  onChange={(e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-
-    if (!value.trim()) {
-      setSearchResults([]);
-      setSearchError("");
-    }
-  }}
-  onKeyDown={(e) => {
-    if (e.key === "Enter") {
-      handleNaturalLanguageSearch(searchTerm);
-    }
-  }}
-  placeholder="Describe your dream career..."
+  
+<div
   style={{
-    width: "280px",
-    padding: "10px 12px",
-    borderRadius: "10px",
-    border: "1px solid rgba(255,255,255,0.2)",
-    background: "rgba(255,255,255,0.06)",
-    color: "#fff",
-    outline: "none",
-    fontSize: "13px",
-  }}
-/>
-
-    {searchTerm.trim() && (
-      <div style={{
-        position: "absolute",
-        top: "45px",
-        right: 0,
-        width: "280px",
-        background: "#101827",
-        border: "1px solid rgba(255,255,255,0.15)",
-        borderRadius: "12px",
-        padding: "8px",
-        zIndex: 1000,
-      }}>
-        <div
-  style={{
-    position: "absolute",
-    top: "45px",
-    right: 0,
-    width: "300px",
-    background: "#101827",
-    border: "1px solid rgba(255,255,255,0.15)",
-    borderRadius: "12px",
-    padding: "8px",
-    zIndex: 1000,
+    position: "relative",
+    width: "min(620px, 52vw)",
   }}
 >
-  {searchLoading ? (
-    <div style={{ padding: "12px", color: "#4cc9f0" }}>
-      🧠 Finding relevant career tracks...
-    </div>
-  ) : searchError ? (
-    <div style={{ padding: "12px", color: "#ff6b6b" }}>
-      {searchError}
-    </div>
-  ) : searchResults.length > 0 ? (
-    searchResults.map((r) => (
-      <button
-        key={r.id}
-        onMouseDown={() => {
-          handleRoleSelect(r);
-          setSearchTerm("");
+  {/* SEARCH BAR */}
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      width: "100%",
+      height: "54px",
+      padding: "0 8px 0 18px",
+      borderRadius: "16px",
+      border: "1px solid rgba(123,47,255,0.55)",
+      background: "rgba(15,22,35,0.95)",
+      boxShadow:
+        "0 0 20px rgba(123,47,255,0.12), inset 0 0 15px rgba(255,255,255,0.02)",
+    }}
+  >
+    {/* WHITE SEARCH ICON */}
+    <span
+      style={{
+        color: "#ffffff",
+        fontSize: "23px",
+        marginRight: "12px",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      🔍
+    </span>
+
+    {/* INPUT */}
+    <input
+      type="text"
+      value={searchTerm}
+      onChange={(e) => {
+        setSearchTerm(e.target.value);
+        setSearchError("");
+
+        if (!e.target.value.trim()) {
           setSearchResults([]);
-        }}
+        }
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          handleNaturalLanguageSearch(searchTerm);
+        }
+      }}
+      placeholder="Describe your dream career..."
+      style={{
+        flex: 1,
+        minWidth: 0,
+        border: "none",
+        outline: "none",
+        background: "transparent",
+        color: "#ffffff",
+        fontSize: "14px",
+        fontFamily: "inherit",
+      }}
+    />
+
+    {/* ENTER HINT */}
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        paddingLeft: "12px",
+        borderLeft: "1px solid rgba(255,255,255,0.15)",
+      }}
+    >
+      <span
         style={{
-          display: "block",
-          width: "100%",
-          padding: "10px",
-          border: "none",
-          borderRadius: "8px",
-          background: "transparent",
-          color: "#fff",
-          textAlign: "left",
-          cursor: "pointer",
-          fontSize: "13px",
+          color: "#8995ae",
+          fontSize: "11px",
+          whiteSpace: "nowrap",
         }}
       >
-        {r.icon} {r.title}
-      </button>
-    ))
-  ) : (
-    <div style={{ padding: "10px", color: "#aaa" }}>
-      Press Enter to find relevant career tracks
+        Press Enter
+      </span>
+
+      <span
+        style={{
+          color: "#ffffff",
+          fontSize: "11px",
+          fontWeight: "700",
+          border: "1px solid rgba(255,255,255,0.25)",
+          borderRadius: "6px",
+          padding: "5px 8px",
+          background: "rgba(255,255,255,0.06)",
+        }}
+      >
+        ↵
+      </span>
+    </div>
+  </div>
+
+  {/* SEARCH DROPDOWN */}
+  {searchTerm.trim() && (
+    <div
+      style={{
+        position: "absolute",
+        top: "64px",
+        right: 0,
+        width: "min(620px, 85vw)",
+        maxHeight: "460px",
+        overflowY: "auto",
+        background:
+          "linear-gradient(145deg, #101b2d 0%, #08111f 100%)",
+        border: "1px solid rgba(76,201,240,0.25)",
+        borderRadius: "18px",
+        padding: "10px",
+        zIndex: 1000,
+        boxShadow: "0 15px 50px rgba(0,0,0,0.5)",
+      }}
+    >
+      {/* LOADING */}
+      {searchLoading && (
+        <div
+          style={{
+            padding: "24px",
+            textAlign: "center",
+            color: "#4cc9f0",
+            fontSize: "13px",
+          }}
+        >
+          🧠 Finding your best career matches...
+        </div>
+      )}
+
+      {/* ERROR */}
+      {!searchLoading && searchError && (
+        <div
+          style={{
+            padding: "18px",
+            color: "#ff6b6b",
+            fontSize: "13px",
+            textAlign: "center",
+          }}
+        >
+          {searchError}
+        </div>
+      )}
+
+      {/* RESULTS */}
+      {!searchLoading &&
+        !searchError &&
+        searchResults.length > 0 &&
+        searchResults.map((r, index) => {
+          const relevance =
+            r.score >= 0.8
+              ? "Most Relevant"
+              : r.score >= 0.6
+              ? "Relevant"
+              : "Possible Match";
+
+          const badgeColor =
+            r.score >= 0.8
+              ? "#00f5a0"
+              : r.score >= 0.6
+              ? "#4cc9f0"
+              : "#a8b0c8";
+
+          return (
+            <button
+              key={r.id}
+              onMouseDown={() => {
+                handleRoleSelect(r);
+                setSearchTerm("");
+                setSearchResults([]);
+              }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "14px",
+                width: "100%",
+                padding: "15px 12px",
+                marginBottom: "4px",
+                border: "none",
+                borderBottom:
+                  index !== searchResults.length - 1
+                    ? "1px solid rgba(255,255,255,0.07)"
+                    : "none",
+                borderRadius: "10px",
+                background: "transparent",
+                color: "#ffffff",
+                textAlign: "left",
+                cursor: "pointer",
+                fontFamily: "inherit",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background =
+                  "rgba(123,47,255,0.12)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "transparent";
+              }}
+            >
+              {/* ROLE ICON */}
+              <span
+                style={{
+                  width: "44px",
+                  height: "44px",
+                  flexShrink: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "12px",
+                  background: `${r.color}22`,
+                  border: `1px solid ${r.color}55`,
+                  fontSize: "22px",
+                }}
+              >
+                {r.icon}
+              </span>
+
+              {/* ROLE DETAILS */}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "700",
+                    marginBottom: "5px",
+                    color: "#f0f2f8",
+                  }}
+                >
+                  {r.title}
+                </div>
+
+                <div
+                  style={{
+                    fontSize: "11px",
+                    lineHeight: "1.5",
+                    color: "#8290a9",
+                  }}
+                >
+                  {r.reason || r.desc}
+                </div>
+              </div>
+
+              {/* RELEVANCE BADGE */}
+              <span
+                style={{
+                  flexShrink: 0,
+                  color: badgeColor,
+                  background: `${badgeColor}12`,
+                  border: `1px solid ${badgeColor}55`,
+                  borderRadius: "100px",
+                  padding: "7px 10px",
+                  fontSize: "10px",
+                  fontWeight: "700",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {relevance}
+              </span>
+
+              {/* ARROW */}
+              <span
+                style={{
+                  color: "#8fa1c0",
+                  fontSize: "18px",
+                }}
+              >
+                →
+              </span>
+            </button>
+          );
+        })}
+
+      {/* NO RESULTS */}
+      {!searchLoading &&
+        !searchError &&
+        searchResults.length === 0 && (
+          <div
+            style={{
+              padding: "22px",
+              textAlign: "center",
+              color: "#8b98b0",
+              fontSize: "12px",
+            }}
+          >
+            <div style={{ fontSize: "22px", marginBottom: "8px" }}>
+              ✨
+            </div>
+            No matching career found.
+            <br />
+            Try describing your interests in more detail.
+          </div>
+        )}
+
+      {/* FOOTER */}
+      {!searchLoading && searchResults.length > 0 && (
+        <div
+          style={{
+            marginTop: "8px",
+            padding: "14px 10px 5px",
+            borderTop: "1px solid rgba(255,255,255,0.08)",
+            color: "#8493b2",
+            fontSize: "11px",
+          }}
+        >
+          ✦ Results are AI-matched according to your interests.
+        </div>
+      )}
     </div>
   )}
 </div>
-      </div>
-    )}
-  </div>
 </div>
         </nav>
 
