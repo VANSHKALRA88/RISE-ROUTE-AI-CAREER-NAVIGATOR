@@ -380,6 +380,9 @@ export default function RiseRoute() {
   const [animIn, setAnimIn] = useState(false);
   const resultRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchLoading, setSearchLoading] = useState(false);
+  const [searchError, setSearchError] = useState("");
 
   useEffect(() => {
     const p = Array.from({ length: 30 }, (_, i) => ({
@@ -471,6 +474,59 @@ market:
   setLoading(false);
 };
 
+  const handleNaturalLanguageSearch = async (query) => {
+  const trimmedQuery = query.trim();
+
+  if (!trimmedQuery) {
+    setSearchResults([]);
+    setSearchError("");
+    return;
+  }
+
+  setSearchLoading(true);
+  setSearchError("");
+
+  try {
+    const response = await fetch("/api/recommend", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: trimmedQuery,
+        roles: ROLES.map((role) => ({
+          id: role.id,
+          title: role.title,
+          description: role.desc,
+          tags: role.tags,
+        })),
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Career recommendation request failed");
+    }
+
+    const data = await response.json();
+
+    const validMatches = Array.isArray(data.matches)
+      ? data.matches
+      : [];
+
+    const matchedRoles = validMatches
+      .map((match) => ROLES.find((role) => role.id === match.id))
+      .filter(Boolean);
+
+    setSearchResults(matchedRoles);
+  } catch (error) {
+    console.error("NLP Search Error:", error);
+    setSearchResults([]);
+    setSearchError("Unable to process search. Please try again.");
+  } finally {
+    setSearchLoading(false);
+  }
+};
+
   const handleRoleSelect = (role) => {
     setSelectedRole(role);
     setActiveTab(0);
@@ -486,9 +542,6 @@ market:
   };
 
   const role = selectedRole;
-  const searchResults = ROLES.filter((r) =>
-  r.title.toLowerCase().includes(searchTerm.trim().toLowerCase())
-);
   
   //logo links
 const ORG_LOGOS = {
@@ -708,21 +761,34 @@ const ORG_LOGOS = {
           <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
   <div style={{ position: "relative" }}>
     <input
-      type="text"
-      value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-      placeholder="Search careers..."
-      style={{
-        width: "190px",
-        padding: "10px 12px",
-        borderRadius: "10px",
-        border: "1px solid rgba(255,255,255,0.2)",
-        background: "rgba(255,255,255,0.06)",
-        color: "#fff",
-        outline: "none",
-        fontSize: "13px",
-      }}
-    />
+  type="text"
+  value={searchTerm}
+  onChange={(e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+
+    if (!value.trim()) {
+      setSearchResults([]);
+      setSearchError("");
+    }
+  }}
+  onKeyDown={(e) => {
+    if (e.key === "Enter") {
+      handleNaturalLanguageSearch(searchTerm);
+    }
+  }}
+  placeholder="Describe your dream career..."
+  style={{
+    width: "280px",
+    padding: "10px 12px",
+    borderRadius: "10px",
+    border: "1px solid rgba(255,255,255,0.2)",
+    background: "rgba(255,255,255,0.06)",
+    color: "#fff",
+    outline: "none",
+    fontSize: "13px",
+  }}
+/>
 
     {searchTerm.trim() && (
       <div style={{
@@ -736,35 +802,58 @@ const ORG_LOGOS = {
         padding: "8px",
         zIndex: 1000,
       }}>
-        {searchResults.length > 0 ? (
-          searchResults.map((r) => (
-            <button
-              key={r.id}
-              onMouseDown={() => {
-                handleRoleSelect(r);
-                setSearchTerm("");
-              }}
-              style={{
-                display: "block",
-                width: "100%",
-                padding: "10px",
-                border: "none",
-                borderRadius: "8px",
-                background: "transparent",
-                color: "#fff",
-                textAlign: "left",
-                cursor: "pointer",
-                fontSize: "13px",
-              }}
-            >
-              {r.icon} {r.title}
-            </button>
-          ))
-        ) : (
-          <div style={{ padding: "10px", color: "#aaa" }}>
-            No career track found
-          </div>
-        )}
+        <div
+  style={{
+    position: "absolute",
+    top: "45px",
+    right: 0,
+    width: "300px",
+    background: "#101827",
+    border: "1px solid rgba(255,255,255,0.15)",
+    borderRadius: "12px",
+    padding: "8px",
+    zIndex: 1000,
+  }}
+>
+  {searchLoading ? (
+    <div style={{ padding: "12px", color: "#4cc9f0" }}>
+      🧠 Finding relevant career tracks...
+    </div>
+  ) : searchError ? (
+    <div style={{ padding: "12px", color: "#ff6b6b" }}>
+      {searchError}
+    </div>
+  ) : searchResults.length > 0 ? (
+    searchResults.map((r) => (
+      <button
+        key={r.id}
+        onMouseDown={() => {
+          handleRoleSelect(r);
+          setSearchTerm("");
+          setSearchResults([]);
+        }}
+        style={{
+          display: "block",
+          width: "100%",
+          padding: "10px",
+          border: "none",
+          borderRadius: "8px",
+          background: "transparent",
+          color: "#fff",
+          textAlign: "left",
+          cursor: "pointer",
+          fontSize: "13px",
+        }}
+      >
+        {r.icon} {r.title}
+      </button>
+    ))
+  ) : (
+    <div style={{ padding: "10px", color: "#aaa" }}>
+      Press Enter to find relevant career tracks
+    </div>
+  )}
+</div>
       </div>
     )}
   </div>
